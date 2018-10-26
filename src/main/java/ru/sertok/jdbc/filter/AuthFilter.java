@@ -1,4 +1,4 @@
-package ru.sertok.jsp.filter;
+package ru.sertok.jdbc.filter;
 
 
 import javax.servlet.*;

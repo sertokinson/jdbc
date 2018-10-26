@@ -1,10 +1,11 @@
-package ru.sertok.jsp.storage;
+package ru.sertok.jdbc.storage;
 
-import ru.sertok.jsp.entities.User;
-import ru.sertok.jsp.utils.Utils;
+import ru.sertok.jdbc.entities.User;
+import ru.sertok.jdbc.utils.Utils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Storage {
@@ -23,7 +24,7 @@ public class Storage {
     // приватный констуктор, выполняющий инициализацию списка
     private Storage() {
         this.users = new ArrayList<>();
-        users.add(new User("Сергей", Utils.hash("12355789"), LocalDate.parse("1994-02-12")));
+        users.add(new User("Сергей", Utils.hash("12355789"), new Date()));
     }
 
     // метод, предоставляющий доступ к объекту класса

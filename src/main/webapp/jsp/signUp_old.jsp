@@ -1,6 +1,6 @@
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="ru.sertok.jdbc.entities.User" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ru.sertok.jsp.entities.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Сергей
   Date: 10.10.2018

@@ -1,4 +1,4 @@
-package ru.sertok.jsp.servlets;
+package ru.sertok.jdbc.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,9 +17,6 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String signIn = req.getParameter("signIn");
-        String home = req.getParameter("homeButton.x");
-        if(home!=null)
-            resp.sendRedirect(req.getContextPath() + "/home");
         String registration = req.getParameter("registration");
         if ("signIn".equals(signIn))
             resp.sendRedirect(req.getContextPath() + "/login");

@@ -1,8 +1,8 @@
-package ru.sertok.jsp.servlets;
+package ru.sertok.jdbc.servlets;
 
-import ru.sertok.jsp.repository.api.Repository;
-import ru.sertok.jsp.repository.impl.LocalRepository;
-import ru.sertok.jsp.utils.Utils;
+import ru.sertok.jdbc.repository.api.Repository;
+import ru.sertok.jdbc.repository.impl.LocalRepository;
+import ru.sertok.jdbc.utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,11 +30,11 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = Utils.decode(req.getParameter("name"));
         String password = req.getParameter("password");
-        if(repository.isExist(name,password)) {
+       // if(repository.isExist(name,password)) {
             HttpSession session = req.getSession();
             session.setAttribute("user",name);
             resp.sendRedirect(req.getContextPath() + "/users");
-        }
+       // }
         doGet(req,resp);
     }
 }

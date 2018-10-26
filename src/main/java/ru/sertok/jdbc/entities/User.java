@@ -1,13 +1,14 @@
-package ru.sertok.jsp.entities;
+package ru.sertok.jdbc.entities;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 
 public class User {
     private String name;
     private String password;
-    private LocalDate birthDate;
+    private Date birthDate;
 
-    public User(String name, String password, LocalDate birthDate) {
+    public User(String name, String password, Date birthDate) {
         this.name = name;
         this.password = password;
         this.birthDate = birthDate;
@@ -29,11 +30,11 @@ public class User {
         this.password = password;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 }

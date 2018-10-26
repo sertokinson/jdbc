@@ -1,9 +1,9 @@
-package ru.sertok.jsp.repository.impl;
+package ru.sertok.jdbc.repository.impl;
 
-import ru.sertok.jsp.entities.User;
-import ru.sertok.jsp.repository.api.Repository;
-import ru.sertok.jsp.storage.Storage;
-import ru.sertok.jsp.utils.Utils;
+import ru.sertok.jdbc.entities.User;
+import ru.sertok.jdbc.repository.api.Repository;
+import ru.sertok.jdbc.storage.Storage;
+import ru.sertok.jdbc.utils.Utils;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package ru.sertok.jsp.servlets;
+package ru.sertok.jdbc.servlets;
 
-import ru.sertok.jsp.repository.api.Repository;
-import ru.sertok.jsp.repository.impl.LocalRepository;
+import ru.sertok.jdbc.repository.api.Repository;
+import ru.sertok.jdbc.repository.impl.LocalRepository;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,7 +23,7 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("users",repository.findAll());
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/users.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/jdbc/users.jdbc");
         dispatcher.forward(req,resp);
     }
 }

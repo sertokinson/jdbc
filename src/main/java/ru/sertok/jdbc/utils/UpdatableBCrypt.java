@@ -1,4 +1,4 @@
-package ru.sertok.jsp.utils;
+package ru.sertok.jdbc.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
 

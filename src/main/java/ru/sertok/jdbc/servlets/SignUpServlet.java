@@ -1,10 +1,8 @@
-package ru.sertok.jsp.servlets;
+package ru.sertok.jdbc.servlets;
 
-import ru.sertok.jsp.entities.User;
-import ru.sertok.jsp.repository.api.Repository;
-import ru.sertok.jsp.repository.impl.LocalRepository;
-import ru.sertok.jsp.utils.UpdatableBCrypt;
-import ru.sertok.jsp.utils.Utils;
+import ru.sertok.jdbc.repository.api.Repository;
+import ru.sertok.jdbc.repository.impl.LocalRepository;
+import ru.sertok.jdbc.utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.time.LocalDate;
+import java.util.Date;
 
 @WebServlet("/signUp")
 public class SignUpServlet extends HttpServlet {
@@ -33,9 +30,9 @@ public class SignUpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = Utils.decode(req.getParameter("name"));
         String password = req.getParameter("password");
-        LocalDate birthDate = LocalDate.parse(req.getParameter("birthDate"));
+        Date birthDate = new Date(req.getParameter("birthDate"));
 
-        repository.save(new User(name, Utils.hash(password), birthDate));
+        //repository.save(new User(name, Utils.hash(password), birthDate));
         resp.sendRedirect(req.getContextPath() + "/users");
     }
 
