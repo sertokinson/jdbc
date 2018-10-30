@@ -1,7 +1,8 @@
 package ru.sertok.jdbc.servlets;
 
+import ru.sertok.jdbc.entities.User;
 import ru.sertok.jdbc.repository.api.Repository;
-import ru.sertok.jdbc.repository.impl.LocalRepository;
+import ru.sertok.jdbc.repository.impl.DateBaseRepository;
 import ru.sertok.jdbc.utils.Utils;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 
 @WebServlet("/signUp")
 public class SignUpServlet extends HttpServlet {
@@ -18,7 +19,7 @@ public class SignUpServlet extends HttpServlet {
 
     @Override
     public void init() {
-        repository = new LocalRepository();
+        repository = new DateBaseRepository();
     }
 
     @Override
@@ -30,9 +31,8 @@ public class SignUpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = Utils.decode(req.getParameter("name"));
         String password = req.getParameter("password");
-        Date birthDate = new Date(req.getParameter("birthDate"));
-
-        //repository.save(new User(name, Utils.hash(password), birthDate));
+        Date birthDate = Date.valueOf(req.getParameter("birthDate"));
+        repository.save(new User(name, Utils.hash(password), birthDate));
         resp.sendRedirect(req.getContextPath() + "/users");
     }
 
