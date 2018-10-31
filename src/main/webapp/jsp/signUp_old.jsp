@@ -1,4 +1,4 @@
-<%@ page import="ru.sertok.jdbc.entities.User" %>
+<%@ page import="ru.sertok.jdbc.models.User" %>
 <%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.

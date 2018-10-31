@@ -1,7 +1,7 @@
 package ru.sertok.jdbc.servlets;
 
-import ru.sertok.jdbc.repository.api.Repository;
-import ru.sertok.jdbc.repository.impl.DateBaseRepository;
+import ru.sertok.jdbc.dao.impl.UserDao;
+import ru.sertok.jdbc.repository.ConnectionUserDao;
 import ru.sertok.jdbc.utils.Utils;
 
 import javax.servlet.ServletException;
@@ -14,11 +14,12 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    private Repository repository;
+    private UserDao userDao;
 
     @Override
     public void init() {
-        repository = new DateBaseRepository();
+        ConnectionUserDao connection = new ConnectionUserDao();
+        userDao = connection.getUserDao();
     }
 
     @Override
@@ -30,7 +31,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = Utils.decode(req.getParameter("name"));
         String password = req.getParameter("password");
-        if(repository.isExist(name,password)) {
+        if(userDao.isExist(name,password)) {
             HttpSession session = req.getSession();
             session.setAttribute("user",name);
             resp.sendRedirect(req.getContextPath() + "/users");

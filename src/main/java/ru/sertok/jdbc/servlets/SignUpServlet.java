@@ -1,8 +1,8 @@
 package ru.sertok.jdbc.servlets;
 
-import ru.sertok.jdbc.entities.User;
-import ru.sertok.jdbc.repository.api.Repository;
-import ru.sertok.jdbc.repository.impl.DateBaseRepository;
+import ru.sertok.jdbc.dao.impl.UserDao;
+import ru.sertok.jdbc.models.User;
+import ru.sertok.jdbc.repository.ConnectionUserDao;
 import ru.sertok.jdbc.utils.Utils;
 
 import javax.servlet.ServletException;
@@ -15,11 +15,12 @@ import java.sql.Date;
 
 @WebServlet("/signUp")
 public class SignUpServlet extends HttpServlet {
-    private Repository repository;
+    private UserDao userDao;
 
     @Override
     public void init() {
-        repository = new DateBaseRepository();
+        ConnectionUserDao connection = new ConnectionUserDao();
+        userDao = connection.getUserDao();
     }
 
     @Override
@@ -32,7 +33,9 @@ public class SignUpServlet extends HttpServlet {
         String name = Utils.decode(req.getParameter("name"));
         String password = req.getParameter("password");
         Date birthDate = Date.valueOf(req.getParameter("birthDate"));
-        repository.save(new User(name, Utils.hash(password), birthDate));
+        userDao.save(new User()
+                .withName(name).withPassword(Utils.hash(password)).withBirthDate(birthDate)
+        );
         resp.sendRedirect(req.getContextPath() + "/users");
     }
 

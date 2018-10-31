@@ -1,7 +1,7 @@
 package ru.sertok.jdbc.servlets;
 
-import ru.sertok.jdbc.repository.api.Repository;
-import ru.sertok.jdbc.repository.impl.DateBaseRepository;
+import ru.sertok.jdbc.dao.impl.UserDao;
+import ru.sertok.jdbc.repository.ConnectionUserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,16 +13,17 @@ import java.io.IOException;
 
 @WebServlet("/users")
 public class UsersServlet extends HttpServlet {
-    private Repository repository;
+    private UserDao userDao;
 
     @Override
     public void init() {
-        repository = new DateBaseRepository();
+        ConnectionUserDao connection = new ConnectionUserDao();
+        userDao = connection.getUserDao();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users",repository.findAll());
+        req.setAttribute("users",userDao.findAll());
         RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/users.jsp");
         dispatcher.forward(req,resp);
     }
