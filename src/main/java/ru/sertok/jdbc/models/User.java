@@ -1,15 +1,34 @@
 package ru.sertok.jdbc.models;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.sql.Date;
 
+@NoArgsConstructor
+@Getter
 public class User {
     private Integer id;
     private String name;
     private String password;
     private Date birthDate;
 
-    public User() { }
+    private void setId(Integer id) {
+        this.id = id;
+    }
+
+    private void setName(String name) {
+        this.name = name;
+    }
+
+    private void setPassword(String password) {
+        this.password = password;
+    }
+
+    private void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 
     public User withName(String name){
         setName(name);
@@ -31,35 +50,4 @@ public class User {
         return this;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
 }
